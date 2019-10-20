@@ -83,21 +83,57 @@ p:last-child {
 
 .article {
   width: 100%;
-  margin: 50px auto;
+  margin: 100px auto 50px auto;
   padding: 25px;
   color: #333;
   background-color: snow;
   border: 2px solid #61DAFB;
   border-radius: 1.5rem  !important;
+  opacity: 1;
 }
 
-.note {
-  width: 90%;
-  margin: 50px auto;
-  padding: 25px 25px 0 25px;
-  background-color: rgb(240,240,240);
-  border: 1px solid #333;
-  border-radius: 5px;
+
+/* ==========================
+    .hvr-float-shadow
+========================== */
+
+
+.hvr-float-shadow {
+  display: block;
+  position: relative;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform:         perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  transition: all 0.2s linear;
+}
+
+.hvr-float-shadow:before {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  top: 100%;
+  left: 7.5%; /* Assuming the width is 85%. */
+  height: 15px; /* was 10px */
+  width: 85%;
+  opacity: 0;
+  background: -webkit-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 80%);
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 80%);
+  transition: all 0.2s linear;
+  z-index: -1;
+}
+
+
+/* In this case it's not possible to apply the hover effect directly to the
+.article because .main:after is covering it. */
+.main:hover .hvr-float-shadow {
+  -webkit-transform: translateY(-20px);
+  transform: translateY(-20px);
+}
+
+.main:hover .hvr-float-shadow:before {
+  opacity: 1;
+  -webkit-transform: translateY(20px);
+  transform: translateY(20px);
 }
 
 
