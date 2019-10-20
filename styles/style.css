@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+  line-height: 1;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Open Sans", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  line-height: 1;
+  color: #333;
+  text-align: left;
+  background: #232526;
+  background: -webkit-linear-gradient(to top, #414345, #232526);
+  background: linear-gradient(to top, #414345, #232526);
+}
+
+main {
+  min-height: 100vh;
+  padding: 0 50px 50px 50px;
+}
+
+header {
+}
+
+li {
+  margin-bottom: 25px;
+}
+
+p {
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+p:last-child {
+  margin-bottom: 0px;
+}
+
+.fancy-h1 {
+  margin: 0;
+  padding: 0px 25px;
+  color: snow;
+  text-align: center;
+  font-size: 64px;
+  font-family: Montserrat;
+  letter-spacing: 3px;
+  line-height: 1.25;
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: #61DAFB;
+  text-shadow: -3px 3px 6px rgba(0,0,0,0.15);
+}
+
+.fancy-h1 span {
+  display: block;
+  font-size: 24px;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: violet;
+}
+
+.fancy-h2 {
+  color: snow;
+  font-size: 40px;
+  font-family: Montserrat;
+  letter-spacing: 1px;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: violet;
+  text-shadow: -2px 2px 4px rgba(0,0,0,0.15);
+}
+
+.article {
+  width: 100%;
+  margin: 50px auto;
+  padding: 25px;
+  color: #333;
+  background-color: snow;
+  border: 2px solid #61DAFB;
+  border-radius: 1.5rem  !important;
+}
+
+.note {
+  width: 90%;
+  margin: 50px auto;
+  padding: 25px 25px 0 25px;
+  background-color: rgb(240,240,240);
+  border: 1px solid #333;
+  border-radius: 5px;
+}
+
+
+/* =============================================================================
+                                  #menu
+============================================================================= */
+
+
+#menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateX(-300px);
+  height: 100%;
+  width: 300px;
+  padding: 50px 30px;
+  text-align: center;
+  background: #12c2e9;
+  background: -webkit-linear-gradient(0deg, #f64f59, #c471ed, #12c2e9);
+  background: linear-gradient(0deg, #f64f59, #c471ed, #12c2e9, #12c2e9);
+  border-right: 1px solid white;
+  transition: all .3s ease-in;
+}
+
+#menu .brand {
+  height: 60px;
+  font-size: 70px;
+  color: white;
+  font-weight: 900;
+  line-height: .75;
+}
+
+#menu ul {
+  padding: 0;
+  margin-top: 30px;
+}
+
+
+#menu li {
+  /* inheriting from above: li { margin-bottom: 25px; } */
+  list-style-type: none;
+  border-top: 0.5px solid white;
+}
+
+#menu ul li a {
+  display: block;
+  padding-top: 25px;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all .3s ease;
+}
+
+#menu ul li a:hover {
+  letter-spacing: 5px;
+  color: violet;
+  font-weight: bold;
+  transform: scale(1.25);
+  text-shadow: -1px 1px 2px rgba(0,0,0,0.15);
+}
+
+.main {
+  position: relative;
+  padding: 50px;
+  transition: all .3s ease-in;
+}
+
+.main:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  -webkit-backdrop-filter: blur(0px);
+  backdrop-filter: blur(0px);
+  transition: all .3s ease-in;
+}
+
+.main-overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  background-color: rgba(0,0,0,0);
+  z-index: 1; /* Arbitrary. It just needs to go over .main */
+  transition: all 0.300s linear;
+}
+
+.main-overlay.active {
+  background-color: rgba(0,0,0,0.25);
+}
+
+
+/* ==========================
+      MENU TOGGLE ICON
+========================== */
+
+
+.menu-toggle-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2; /* To get out from underneath .main-overlay & .main:after */
+}
+
+/* This needs to remain position: relative for the X. */
+#menu-toggle {
+  position: relative;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  background: violet;
+  border: none;
+  border-radius: 50px;
+  box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,1);
+  transition: transform 0.15s linear;
+}
+
+#menu-toggle:hover {
+  transform: scale(1.05);
+  box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,1),
+                   -2px 2px 4px     rgba(0,0,0,0.75); /* Not really noticable against a dark background. */
+}
+
+/* The X */
+#menu-toggle:before,
+#menu-toggle:after {
+  position: absolute;
+  content: "";
+  background-color: white;
+  transition: all .5s ease;
+}
+
+/* The X */
+#menu-toggle:before {
+  top: 10px;
+  left: 24px;
+  height: 30px;
+  width: 2px;
+  border-radius: 15px;
+}
+
+/* The X */
+#menu-toggle:after {
+  top: 24px;
+  left: 10px;
+  height: 2px;
+  width: 30px;
+  border-radius: 15px;
+}
+
+
+/* ==========================
+        body.open
+========================== */
+
+
+/* .open is applied to the body element programmatically.
+In such cases we want it to affect the child #menu element
+(nav#menu) such that the transform: translateX(-300px) on #menu is changed
+to transform: translateX(0px); */
+body.open #menu {
+  transform: translateX(0px);
+}
+
+body.open .main {
+  /* Remove this line, and the sidebar will slide over .main, without pushing it. */
+  transform: translateX(300px);
+}
+
+body.open .main:after {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+body.open button#menu-toggle:before,
+body.open button#menu-toggle:after {
+  transform: rotate(45deg);
+}
